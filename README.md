@@ -1,5 +1,5 @@
 <기본 사항>
-Unreal Engine 2.23
+Unreal Engine 2.23,
 HaptX SDK Install
 
 <HaptX Uneal API관련 문서>
