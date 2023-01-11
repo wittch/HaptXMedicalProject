@@ -19,7 +19,7 @@ AMedicine_Bottle_Second::AMedicine_Bottle_Second()
 void AMedicine_Bottle_Second::BeginPlay()
 {
 	Super::BeginPlay();
-	AreaSphere->OnComponentBeginOverlap.AddDynamic(this, &AMedicine_Bottle_Second::OnSphereOverlap);
+	//AreaSphere->OnComponentBeginOverlap.AddDynamic(this, &AMedicine_Bottle_Second::OnSphereOverlap);
 	
 }
 
@@ -40,7 +40,14 @@ void AMedicine_Bottle_Second::OnSphereOverlap(UPrimitiveComponent* OverlappedCom
 		if (Syring)
 		{
 			FVector MeshOffset{ 0, 1.0f - (Syring->GetAmount() * 0.1f), 0 };
-			MedicineAmount->AddLocalOffset(MeshOffset);
+			
+			FTransform MeshTransform;
+			MeshTransform.SetLocation(MedicineAmount->GetComponentLocation());
+			MeshTransform.SetRotation(MedicineAmount->GetComponentRotation().Quaternion());
+			MeshTransform.SetScale3D(MeshOffset);
+
+			MedicineAmount->SetWorldTransform(MeshTransform);
+
 		}
 	}
 }

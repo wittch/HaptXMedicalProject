@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SceneComponent.h"
+#include "Math/TransformNonVectorized.h"
 // Sets default values
 ASyring_Second::ASyring_Second():
 	Amount(0)
@@ -35,7 +36,13 @@ void ASyring_Second::CalcMedicineAmount(UStaticMeshComponent* mesh)
 {
 	Amount = mesh->RelativeLocation.Y * 0.1f;
 	FVector Meshoffset{ 0,Amount,0 };
-	mesh->AddLocalOffset(Meshoffset);
+	
+	FTransform MeshTransform;
+	MeshTransform.SetLocation(mesh->GetComponentLocation());
+	MeshTransform.SetRotation(mesh->GetComponentRotation().Quaternion());
+	MeshTransform.SetScale3D(Meshoffset);
+
+	mesh->SetWorldTransform(MeshTransform);
 	
 }
 
