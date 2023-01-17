@@ -55,4 +55,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Amount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+
+	class UHx1DTranslatorComponent* TranslatorComponent;
+
+	
 };

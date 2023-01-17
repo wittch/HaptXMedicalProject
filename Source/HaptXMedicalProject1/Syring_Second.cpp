@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include <HaptxPrimitives/Public/Components/hx_1d_translator_component.h>
 #include "Syring_Second.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -28,6 +29,10 @@ ASyring_Second::ASyring_Second():
 
 	Medicine = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Medicine"));
 	Medicine->SetupAttachment(Cylinder);
+
+
+	TranslatorComponent = CreateDefaultSubobject<UHx1DTranslatorComponent>(TEXT("TranslatorComponent"));
+	TranslatorComponent->SetupAttachment(Cylinder);
 
 }
 
@@ -84,7 +89,7 @@ void ASyring_Second::CalcMedicineAmount()
 	Amount = Amount * 0.01f;
 	Amount = FMath::Clamp(Amount, 0.0f, 1.5f);
 
-	GEngine->AddOnScreenDebugMessage(-1, 30, FColor::Cyan, FString::Printf(TEXT("%f"), Amount));
+	
 	FVector CylinderLocation = { 0.0f, -5.0f, 30.0f };
 	FVector CylinderScale = { 0.5f, 0.5f, Amount };
 	FTransform CylinderTransform;
