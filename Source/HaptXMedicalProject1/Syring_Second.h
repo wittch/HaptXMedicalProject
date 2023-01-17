@@ -18,27 +18,18 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UFUNCTION()
-	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
 	
+	float Amount;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
-	void CalcMedicineAmount();
-
-	UFUNCTION(BlueprintCallable)
-	float GetCylinderToPistonDistance();
-
+	void CalcMedicineAmount(UStaticMeshComponent* mesh);
 
 	FORCEINLINE float GetAmount() { return Amount; }
 
+<<<<<<< HEAD
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -61,4 +52,6 @@ public:
 	class UHx1DTranslatorComponent* TranslatorComponent;
 
 	
+=======
+>>>>>>> parent of 2c17b86 (syring BP -> cpp 변경 중)
 };
